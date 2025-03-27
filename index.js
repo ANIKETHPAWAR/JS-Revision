@@ -1,10 +1,10 @@
-const fs = require('fs');
-function data1(err, data) {
-  
-    console.log(data);
-  }
+function first(name){
+  function sayName(){
+    console.log(name)
+  };
+  return sayName;
 
-fs.readFile("./a.txt", "utf8",data1);
+}
 
-fs.readFile("./b.txt", "utf8",data1);
-console.log("End of the file");
+p=first("ani");
+p();
