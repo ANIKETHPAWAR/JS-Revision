@@ -19,18 +19,32 @@ function adderFix(num){
 let addT = adderFix(10);
 addT(15) ;
 /// counter 
-countShow = document.getElementById('show');
-cBtn = document.getElementById('btn');
+// let countShow = document.getElementById('show');
+// let cBtn = document.getElementById('btn');
 
-function countI(){
-  let c = 0;
-  function counter(){
-    c++;
-    console.log(c);
-    countShow.innerText = c;
-  }
-  return counter;
-}
-let p = countI() ;
+// function countI(){
+//   let c = 0;
+//   function counter(){
+//     c++;
+//     console.log(c);
+//     countShow.innerText = c;
+//   }
+//   return counter;
+// }
+// let p = countI() ;
 
-cBtn.addEventListener("click",p);
+// cBtn.addEventListener("click",p);
+
+/// currying
+
+function sendEmail (to){
+  return function (subject){
+    return function (body){
+      console.log(`sending email ${to} on the subject of ${subject} body ${body}`)
+    };
+  };
+};
+
+let to1 = sendEmail('piyush');
+let to2 =to1("on ");
+to2("subject");
