@@ -48,3 +48,22 @@ function sendEmail (to){
 let to1 = sendEmail('piyush');
 let to2 =to1("on ");
 to2("subject");
+
+
+/// without promise
+
+function loadScr(src,callback){
+  const script = document.createElement('script');
+  script.src = src;
+  script.onload = ()=> callback(null,script);
+  script.onerror = (err) => callback(err);
+  document.head.appendChild(script);
+}
+loadScr('test.js',(err,script) => {
+  if(err){
+    console.log(err);
+
+  }else{
+    console.log('script loaded')
+  }
+})
