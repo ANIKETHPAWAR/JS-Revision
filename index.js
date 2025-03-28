@@ -59,11 +59,21 @@ function loadScr(src,callback){
   script.onerror = (err) => callback(err);
   document.head.appendChild(script);
 }
-loadScr('test.js',(err,script) => {
-  if(err){
-    console.log(err);
 
-  }else{
-    console.log('script loaded')
+
+/// promisification
+
+function promisfy(fn){
+  return function (...args){
+    return new Promise((resolve,reject)=>{
+      fn(...args,(error,result)=>{
+        if (error) return reject (error);
+          return resolve(result);
+      })
+    })
   }
-})
+}
+let promisified = promisfy(loadScr);
+promisified('test.js')
+.then(()=>console.log("!!done"))
+.catch((err) => console.log(`Error: ${err}`));
